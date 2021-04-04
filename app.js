@@ -26,8 +26,8 @@ app
   .use(bodyParser.json({ limit: '5mb' }));
 
 // Importamos modulos
-const exampleRouter = require('./src/modules/example/example.router');
-const authRouter = require('./src/modules/auth/auth.router');
+const exampleRouter = require('./src/routes/example.router');
+const authRouter = require('./src/routes/auth.router');
 // Establecemos las rutas
 app
   .use('/example', exampleRouter)
