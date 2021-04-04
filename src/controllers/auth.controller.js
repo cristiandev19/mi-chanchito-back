@@ -1,9 +1,9 @@
-const authUtils = require('./auth.utils');
+const jwtAdapter = require('../adapter/jwt.adapter');
 
 exports.loginEmail = (req, res, next) => {
   try {
     const { email } = req.body;
-    const result = authUtils.signToken({ email, isLoged: true });
+    const result = jwtAdapter.signToken({ email, isLoged: true });
     return res.status(200).send({
       msj   : 'Ingreso existoso',
       token : result,
@@ -15,7 +15,7 @@ exports.loginEmail = (req, res, next) => {
 
 exports.verifyLogin = (req, res, next) => {
   try {
-    const result = authUtils.verifyToken(req.query.token);
+    const result = jwtAdapter.verifyToken(req.query.token);
     if (result.error) {
       throw new Error(result.msj);
     }

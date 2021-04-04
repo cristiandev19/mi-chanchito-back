@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-const exampleController = require('./example.controller');
+const exampleController = require('../controllers/example.controller');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
