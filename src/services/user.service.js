@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-const { User } = require('../models/User');
+const { Users } = require('../models/Users');
 const Validator = require('../helpers/dao/Validator');
 
 exports.createUser = ({
@@ -14,7 +14,7 @@ exports.createUser = ({
       throw new Error(validator.message);
     }
 
-    const user = new User({ email, password, profile });
+    const user = new Users({ email, password, profile });
     user.save();
 
     return resolve({ success: true, user });
