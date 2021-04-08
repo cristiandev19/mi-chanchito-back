@@ -11,7 +11,7 @@ const usersSchema = new mongoose.Schema({
   },
   // Cuando quieres cambiar la contraseña, se usa el Token
   passwordResetToken : String,
-  emailVerified      : Boolean,
+  emailVerified      : { type: Boolean, default: false },
 }, { timestamps: true });
 
 /**
