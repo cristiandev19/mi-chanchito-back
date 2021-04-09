@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { typeCashFlow } = require('../constants/transfer');
+import * as mongoose from 'mongoose';
+import { typeCashFlow } from '../constants/transfer';
 
 const transfesSchema = new mongoose.Schema({
   title        : { type: String, default: '', required: true },
@@ -14,6 +14,4 @@ const transfesSchema = new mongoose.Schema({
   }
 });
 
-const Transfers = mongoose.model('Transfers', transfesSchema);
-
-module.exports = Transfers;
+export const Transfers = mongoose.model('Transfers', transfesSchema);
