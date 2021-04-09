@@ -1,6 +1,6 @@
-const jwtAdapter = require('../adapter/jwt.adapter');
+import * as jwtAdapter from '../adapter/jwt.adapter';
 
-exports.loginEmail = (req, res, next) => {
+export const loginEmail = (req, res, next) => {
   try {
     const { email } = req.body;
     const result = jwtAdapter.signToken({ email, isLoged: true });
@@ -13,7 +13,7 @@ exports.loginEmail = (req, res, next) => {
   }
 };
 
-exports.verifyLogin = (req, res, next) => {
+export const verifyLogin = (req, res, next) => {
   try {
     const result = jwtAdapter.verifyToken(req.query.token);
     if (result.error) {
