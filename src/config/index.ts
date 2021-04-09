@@ -1,6 +1,7 @@
-require('dotenv').config();
+// require('dotenv').config();
+import 'dotenv/config';
 
-const config = {
+export const config = {
   dev               : process.env.NODE_ENV !== 'production',
   port              : process.env.PORT || 3000,
   mongoConnect      : process.env.MONGO_CONNECT,
@@ -8,4 +9,4 @@ const config = {
   authJwtExpireTime : process.env.AUTH_JWT_EXPIRE_TIME,
 };
 
-module.exports = { config };
+// module.exports = { config };
