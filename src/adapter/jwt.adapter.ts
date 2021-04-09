@@ -1,17 +1,22 @@
-const jwt = require('jsonwebtoken');
-const { config } = require('../config/index');
+import { sign, verify } from 'jsonwebtoken';
+import { config } from '../config/index';
 
-exports.signToken = (
+interface IJwtAdapter {
+  signToken(): any;
+  verifyToken(): any;
+}
+
+export const signToken = (
   payload, secret = config.authJwtSecret,
-) => jwt.sign(payload, secret, {
+) => sign(payload, secret, {
   expiresIn: process.env.JWT_EXPIRE_TIME,
 });
 
-exports.verifyToken = (
+export const verifyToken = (
   token, secret = config.authJwtSecret,
 ) => {
   try {
-    const verified = jwt.verify(token, secret);
+    const verified = verify(token, secret);
     return {
       msj     : 'Autentificado con exito',
       payload : verified,
