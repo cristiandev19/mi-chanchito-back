@@ -1,4 +1,9 @@
-module.exports = class Validator {
+// module.exports =
+
+export class Validator {
+  invalid: boolean;
+  message: String;
+
   constructor() {
     this.invalid = false;
     this.message = '';
