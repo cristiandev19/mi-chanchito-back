@@ -1,9 +1,8 @@
-const express = require('express');
+import * as express from 'express';
+import * as passport from 'passport';
+import * as exampleController from '../controllers/example.controller';
 
 const router = express.Router();
-const passport = require('passport');
-
-const exampleController = require('../controllers/example.controller');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
