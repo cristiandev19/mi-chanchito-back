@@ -1,7 +1,20 @@
-const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
+import { Schema, Document } from 'mongoose';
+const bcrypt = require('bcrypt-nodejs');
 
-const usersSchema = new mongoose.Schema({
+interface IUsers extends Document {
+  email    : String;
+  password : String;
+  profile  : {
+    names     : String;
+    lastNames : String;
+    picture   : String;
+  };
+  passwordResetToken : String;
+  emailVerified      : String;
+};
+
+const usersSchema = new Schema<IUsers>({
   email    : { type: String, unique: true },
   password : String,
   profile  : {
@@ -68,6 +81,6 @@ user.comparePassword(password, (err, isMatch) => {
   // return done(null, false, { msg: 'Invalid email or password.' });
 });
  */
-const Users = mongoose.model('Users', usersSchema);
+export const Users = mongoose.model('Users', usersSchema);
 
-module.exports = Users;
+// module.exports = Users;
