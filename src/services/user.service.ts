@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-const { Users } = require('../models/Users');
-const Validator = require('../helpers/dao/Validator');
+import { Users } from '../models/Users';
+import Validator from '../helpers/dao/Validator';
 
-exports.createUser = ({
+export const createUser = ({
   email, password, profile,
 }) => new Promise((resolve) => {
   try {
@@ -23,7 +23,7 @@ exports.createUser = ({
   }
 });
 
-exports.readUser = () => new Promise((resolve) => {
+export const readUser = () => new Promise((resolve) => {
   try {
     return resolve({ success: true });
   } catch (error) {
@@ -31,7 +31,7 @@ exports.readUser = () => new Promise((resolve) => {
   }
 });
 
-exports.updateUser = () => new Promise((resolve) => {
+export const updateUser = () => new Promise((resolve) => {
   try {
     return resolve({ success: true });
   } catch (error) {
@@ -39,7 +39,7 @@ exports.updateUser = () => new Promise((resolve) => {
   }
 });
 
-exports.deleteUser = () => new Promise((resolve) => {
+export const deleteUser = () => new Promise((resolve) => {
   try {
     return resolve({ success: true });
   } catch (error) {
