@@ -1,8 +1,8 @@
-const express = require('express');
+import * as express from 'express';
+import * as authController from '../controllers/auth.controller';
 
 const router = express.Router();
 
-const authController = require('../controllers/auth.controller');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
