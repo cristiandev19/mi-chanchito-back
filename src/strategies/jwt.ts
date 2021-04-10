@@ -2,9 +2,9 @@
 // import passportJwt from 'passport-jwt';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 // import passportJwt from 'passport-jwt';
+import { Users } from '../models/Users';
 
 
-import * as Users from '../models/Users';
 
 import { config } from '../config/index';
 
