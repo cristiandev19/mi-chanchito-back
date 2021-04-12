@@ -15,9 +15,9 @@ import { config } from './src/config/index';
 
 // passport stuff
 // const jwtStrategry  = require('./src/strategies/jwt');
-import * as jwtStrategry from './src/strategies/jwt';
+import { jwtStrategy } from './src/strategies/jwt';
 
-passport.use('jwt', jwtStrategry);
+passport.use('jwt', jwtStrategy);
 
 // Hacemos la conexion a mongodb
 dbConnection();
@@ -47,3 +47,7 @@ app
 app.listen(config.port, () => {
   console.log(`Example app listening at http://localhost:${config.port}`);
 });
+
+
+
+
