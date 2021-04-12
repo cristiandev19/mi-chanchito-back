@@ -14,7 +14,8 @@ const opts = {
 };
 
 // Aqui debemos cambiarlo para que llame a la BD por un id dentro del token
-module.exports = new Strategy(opts, (jwtPayload, done) => {
+// module.
+const jwtStrategy = new Strategy(opts, (jwtPayload, done) => {
   Users.findOne({ _id: jwtPayload.sub }, (err, user) => {
     if (err) {
       return done(err);
@@ -25,3 +26,7 @@ module.exports = new Strategy(opts, (jwtPayload, done) => {
     return done(null, user);
   });
 });
+
+export {
+  jwtStrategy
+};
