@@ -1,7 +1,19 @@
 import * as mongoose from 'mongoose';
 import { typeCashFlow } from '../constants/transfer';
 
-const transfesSchema = new mongoose.Schema({
+export interface ITransfers {
+  title        : String;
+  description  : String;
+  amount       : Number;
+  dateTransfer : Date;
+  cashFlow     : String;
+};
+// export class Transfers implements ITransfers {
+//   constructor() {}
+  
+// }
+
+const transfesSchema = new mongoose.Schema<ITransfers>({
   title        : { type: String, default: '', required: true },
   description  : { type: String, default: '', required: false },
   amount       : { type: Number, default: 0, required: true },
