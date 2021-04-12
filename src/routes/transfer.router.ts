@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as transferController from '../controllers/transfer.controller';
 
 const router = express.Router();
 
@@ -10,8 +11,9 @@ router.use((req, res, next) => {
 });
 
 router
+  .get('/getTransfers', transferController.getTransfers)
   .post('/addTransfer', transferController.addTransfer)
-  .put('/updateTransfer', transferController.updateTransfer);
+  .put('/updateTransfer', transferController.updateTransfer)
   .delete('/deleteTransfer', transferController.deleteTransfer);
 
 module.exports = router;
