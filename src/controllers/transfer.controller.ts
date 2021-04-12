@@ -1,3 +1,16 @@
+export const getTransfers = (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const result = jwtAdapter.signToken({ email, isLoged: true });
+    return res.status(200).send({
+      msj   : 'Ingreso existoso',
+      token : result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 export const addTransfer = (req, res, next) => {
   try {
