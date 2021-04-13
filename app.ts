@@ -1,36 +1,11 @@
-// const express    = require('express');
 import * as express from 'express';
-// const cors       = require('cors');
+import * as mongoose from 'mongoose';
+import IController from './src/interfaces/controller.interface';
 import * as cors from 'cors';
-// const bodyParser = require('body-parser');
-import * as bodyParser from 'body-parser';
-// const passport      = require('passport');
-import * as passport from 'passport';
-
-const app = express();
-
-// const { dbConnection } = require('./src/databases/mongodb');
-import { dbConnection } from './src/databases/mongodb';
 import { config } from './src/config/index';
+import { logErrors, errorHandler } from './src/middlewares/error.middleware';
 
-// passport stuff
-// const jwtStrategry  = require('./src/strategies/jwt');
-import { jwtStrategy } from './src/strategies/jwt';
-
-passport.use('jwt', jwtStrategy);
-
-// Hacemos la conexion a mongodb
-dbConnection();
-
-// Importamos los middlewares para manejar los errores
-import { logErrors, errorHandler } from './src/utils/middleware/errorHandler';
-
-// Aqui configuraciones
-app
-  .use(cors({ origin: '*' }))
-  .use(bodyParser.urlencoded({ limit: '5mb', extended: true }))
-  .use(bodyParser.json({ limit: '5mb' }));
-
+/*
 // Importamos modulos
 const exampleRouter = require('./src/routes/example.router');
 const authRouter = require('./src/routes/auth.router');
@@ -38,16 +13,70 @@ const authRouter = require('./src/routes/auth.router');
 app
   .use('/example', exampleRouter)
   .use('/auth', authRouter);
+*/
 
-// Middleware para manejo de errores
-app
-  .use(logErrors)
-  .use(errorHandler);
+class App {
+  public app: express.Application;
 
-app.listen(config.port, () => {
-  console.log(`Example app listening at http://localhost:${config.port}`);
-});
+  constructor(controllers: IController[]) {
+    this.app = express();
 
+    this.connectToTheDatabase();
+    this.initializeConfigs();
+    this.initializeMiddlewares();
+    this.initializeControllers(controllers);
+    this.initializeErrorHandling();
+  }
 
+  public listen() {
+    this.app.listen(config.port, () => {
+      console.log(`Example app listening at http://localhost:${config.port}`);
+    });
+  }
 
+  public getServer() {
+    return this.app;
+  }
 
+  private initializeMiddlewares() {
+  }
+
+  private initializeConfigs() {
+    this.app.use(cors({ origin: '*' }))
+    this.app.use(express.json({limit: '20mb'}));
+    this.app.use(express.urlencoded({ extended: false, limit: '20mb' }));
+  }
+
+  private initializeErrorHandling() {
+    this.app.use(logErrors)
+    this.app.use(errorHandler);
+  }
+
+  private initializeControllers(controllers: IController[]) {
+    controllers.forEach((controller) => {
+      this.app.use('/', controller.router);
+    });
+  }
+
+  private connectToTheDatabase() {
+    // const {
+    //   MONGO_USER,
+    //   MONGO_PASSWORD,
+    //   MONGO_PATH,
+    // } = process.env;
+    // mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+    return new Promise(async (resolve) => {
+      try {
+        await mongoose.connect(config.mongoConnect, {
+          useNewUrlParser    : true,
+          useUnifiedTopology : true,
+          useCreateIndex     : true,
+        });
+      } catch (error) {
+        throw new Error('Algo salio mal en la coneccion a mongo');
+      }
+    })
+  }
+}
+
+export default App;
