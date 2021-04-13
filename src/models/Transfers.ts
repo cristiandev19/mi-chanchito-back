@@ -9,8 +9,7 @@ export interface ITransfers {
   cashFlow     : String;
 };
 // export class Transfers implements ITransfers {
-//   constructor() {}
-  
+//   constructor() {} 
 // }
 
 const transfesSchema = new mongoose.Schema<ITransfers>({
