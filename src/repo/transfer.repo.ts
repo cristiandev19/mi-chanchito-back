@@ -1,8 +1,6 @@
-import { Transfers } from "models/Transfers";
-import { Repo } from "./base.repo";
+import { ITransfers, Transfers } from "models/Transfers";
+import { Repo } from "../core/infra/Repo";
 
-export interface ITransferlRepo extends Repo<Transfers> {
-  getVinylById(vinylId: string): Promise<Transfers>;
-  findAllVinylByArtistName(artistName: string): Promise<TransfersCollection>;
-  getVinylOwnedByUserId(userId: string): Promise<TransfersCollection>;
-}
+export interface ITransferlRepo extends Repo<ITransfers> {
+  getTransferById(vinylId: string): Promise<ITransfers>;
+};
