@@ -2,7 +2,8 @@ import * as mongoose from 'mongoose';
 import { Schema, Document } from 'mongoose';
 const bcrypt = require('bcrypt-nodejs');
 
-export interface IUsers extends Document {
+// export interface IUsers extends Document {
+export interface IUsers {
   email    : String;
   password : String;
   profile  : {
