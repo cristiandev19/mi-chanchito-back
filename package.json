@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devjs": "nodemon app.js",
-    "dev": "nodemon ts-node ./app.ts"
+    "dev": "nodemon ./server.ts"
   },
   "repository": {
     "type": "git",
