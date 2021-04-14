@@ -1,4 +1,4 @@
-const { config } = require('../../config');
+const { config } = require('../config/index');
 
 export function withErrorStack(error, stack) {
   if (config.dev) {
