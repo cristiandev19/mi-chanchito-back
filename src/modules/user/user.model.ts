@@ -1,9 +1,9 @@
 import * as mongoose from 'mongoose';
 import { Schema, Document } from 'mongoose';
-import { IUsers } from './user.interface';
+import IUsers from './user.interface';
 const bcrypt = require('bcrypt-nodejs');
 
-const usersSchema = new Schema<IUsers>({
+const usersSchema = new Schema<IUsers & Document>({
   email    : { type: String, unique: true },
   password : String,
   profile  : {
@@ -58,5 +58,6 @@ usersSchema.methods.comparePassword = function comparePassword(candidatePassword
   });
 };
 
-export const Users = mongoose.model('Users', usersSchema);
+const Users = mongoose.model('Users', usersSchema);
 
+export default Users;
