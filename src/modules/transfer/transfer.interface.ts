@@ -1,7 +1,7 @@
 export interface ITransfers {
-  title        : String;
-  description  : String;
-  amount       : Number;
+  title : String;
+  description : String;
+  amount : Number;
   dateTransfer : Date;
-  cashFlow     : String;
-};
+  cashFlow : String;
+}
