@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { typeCashFlow } from '../../constants/transfer';
+import typeCashFlow from '../../constants/transfer';
 import { ITransfers } from './transfer.interface';
 
 const transfesSchema = new mongoose.Schema<ITransfers>({
@@ -12,7 +12,8 @@ const transfesSchema = new mongoose.Schema<ITransfers>({
     default  : '',
     required : true,
     enum     : [...Object.values(typeCashFlow)],
-  }
+  },
 });
 
-export const Transfers = mongoose.model('Transfers', transfesSchema);
+const Transfers = mongoose.model('Transfers', transfesSchema);
+export default Transfers;
