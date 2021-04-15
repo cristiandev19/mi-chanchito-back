@@ -1,9 +1,6 @@
-
-export const typeCashFlow = {
+const typeCashFlow = {
   ingreso : 'ingreso',
   egreso  : 'egreso',
 };
 
-// module.exports = {
-//   typeCashFlow,
-// }
+export default typeCashFlow;
