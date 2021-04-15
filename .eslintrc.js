@@ -1,15 +1,19 @@
 module.exports = {
   env: {
-    commonjs : true,
-    es2021   : true,
-    node     : true,
+    es2021 : true,
+    node   : true,
   },
   extends: [
     'airbnb-base',
   ],
-  parserOptions: {
-    ecmaVersion: 12,
+  parser        : '@typescript-eslint/parser',
+  parserOptions : {
+    ecmaVersion : 12,
+    sourceType  : 'module',
   },
+  plugins: [
+    '@typescript-eslint',
+  ],
   rules: {
     'no-multi-spaces' : ['error', { exceptions: { VariableDeclarator: true } }],
     'key-spacing'     : ['error', {
