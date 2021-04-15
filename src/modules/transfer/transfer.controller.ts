@@ -15,6 +15,7 @@ export class TransferController implements IController {
     // this.router.get(`${this.path}/:id`, authMiddleware, this.getUserById);
     this.router.get(`${this.path}/all`, this.getAllTransfers);
     this.router.get(`${this.path}/:id`, this.getTransferById);
+    this.router.post(`${this.path}/create`, this.createTransfer);
   }
 
   private getTransferById = async (request: Request, response: Response, next: NextFunction) => {
@@ -31,6 +32,17 @@ export class TransferController implements IController {
   }
 
   private getAllTransfers = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      return response.send({
+        status  : 200,
+        message : 'hey',
+      })
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  private createTransfer = async (request: Request, response: Response, next: NextFunction) => {
     try {
       return response.send({
         status  : 200,
