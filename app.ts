@@ -1,8 +1,8 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-import IController from './src/interfaces/controller.interface';
 import * as cors from 'cors';
-import { config } from './src/config/index';
+import IController from './src/interfaces/controller.interface';
+import config from './src/config/index';
 import { logErrors, errorHandler } from './src/middlewares/error.middleware';
 
 /*
