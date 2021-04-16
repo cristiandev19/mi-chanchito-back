@@ -6,4 +6,3 @@ export interface IResponseSuccess<T> {
 export interface IResponseFail {
   error: Error,
 }
-
