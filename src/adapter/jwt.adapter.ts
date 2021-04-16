@@ -1,5 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
-import { config } from '../config/index';
+import config from '../config/index';
 
 interface IJwtAdapter {
   signToken(): any;
