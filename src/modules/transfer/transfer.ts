@@ -1,4 +1,6 @@
-interface TransferProps {
+import { ModelBase } from '../../core/infra/model.base.interface';
+
+interface TransferProps extends ModelBase {
   title : String;
   description : String;
   amount : Number;
@@ -6,6 +8,8 @@ interface TransferProps {
   cashFlow : String;
 }
 
-class Transfer {
+class Transfer implements TransferProps {
   
 }
+
+export default Transfer;
