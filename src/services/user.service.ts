@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { Users } from '../models/Users';
+import Users from '../modules/user/user.model';
 import Validator from '../helpers/dao/Validator';
 
 export const createUser = ({
