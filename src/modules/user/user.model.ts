@@ -3,7 +3,7 @@ import { Schema, Document } from 'mongoose';
 import IUsers from './user.interface';
 const bcrypt = require('bcrypt-nodejs');
 
-const usersSchema = new Schema<IUsers & Document>({
+const usersSchema = new Schema<IUsers>({
   email    : { type: String, unique: true },
   password : String,
   profile  : {
@@ -22,7 +22,7 @@ const usersSchema = new Schema<IUsers & Document>({
  * Encripta la Contraseña si guardas la contraseña nueva.
  */
 usersSchema.pre('save', function save(next) {
-  const user = this;
+  const user = this as IUsers;
   if (!user.isModified('password')) { return next(); }
   bcrypt.genSalt(10, (err, salt) => {
     if (err) { return next(err); }
