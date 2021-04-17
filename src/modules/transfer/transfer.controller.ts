@@ -53,7 +53,7 @@ class TransferController implements IController {
     try {
       console.log('request', request.body);
       const transfer = await this.transferRepo.save({ ...request.body });
-      console.log('transfer', transfer);
+      console.log('transfer', transfer.error);
       return response.send({
         status   : 200,
         message  : 'hey',
