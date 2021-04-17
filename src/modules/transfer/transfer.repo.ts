@@ -1,11 +1,11 @@
-import { IResponseFail, IResponseSuccess } from 'core/infra/Responses';
+import { IResponse } from 'core/infra/Responses';
 import Transfers from './transfer.model';
 import { ITransfers } from './transfer.interface';
 import { Repo } from "../../core/infra/Repo";
 
 export interface ITransferRepo extends Repo<ITransfers> {
-  getTransferById(transferId: string): Promise<IResponseSuccess<ITransfers> | IResponseFail>;
-  getAllTransfers(): Promise<IResponseSuccess<ITransfers[]> | IResponseFail>;
+  getTransferById(transferId: string): Promise<IResponse<ITransfers>>;
+  getAllTransfers(): Promise<IResponse<ITransfers[]>>;
 };
 
 export class TransferRepo implements ITransferRepo {
@@ -13,7 +13,7 @@ export class TransferRepo implements ITransferRepo {
   }
 
   public getAllTransfers() {
-    return new Promise<IResponseSuccess<ITransfers[]> | IResponseFail>((resolve) => {
+    return new Promise<IResponse<ITransfers[]>>((resolve) => {
       try {
         Transfers
           .find()
@@ -22,24 +22,24 @@ export class TransferRepo implements ITransferRepo {
             return resolve({ success: true, payload: res });
           });
       } catch (error) {
-        return resolve({ error });
+        return resolve({ error, payload: null });
       }
     });
   }
 
   public delete(transfer: ITransfers) {
-    return new Promise<IResponseSuccess<ITransfers> | IResponseFail>((resolve) => {
+    return new Promise<IResponse<ITransfers>>((resolve) => {
       try {
         console.log('transfer._id', transfer._id);
         return resolve({ success: true, payload: null });
       } catch (error) {
-        return resolve({ error });
+        return resolve({ error, payload: null });
       }
     });
   }
 
   public exists(transfer: ITransfers) {
-    return new Promise<IResponseSuccess<boolean> | IResponseFail>((resolve) => {
+    return new Promise<IResponse<boolean>>((resolve) => {
       try {
         Transfers
           .findById(transfer)
@@ -49,13 +49,13 @@ export class TransferRepo implements ITransferRepo {
           });
         return resolve({ success: true, payload: true });
       } catch (error) {
-        return resolve({ error });
+        return resolve({ error, payload: null });
       }
     });
   }
 
   public save(transfer: ITransfers) {
-    return new Promise<IResponseSuccess<ITransfers> | IResponseFail>((resolve) => {
+    return new Promise<IResponse<ITransfers>>((resolve) => {
       try {
         const newTransferObj = new Transfers({
           description  : transfer.description,
@@ -71,13 +71,13 @@ export class TransferRepo implements ITransferRepo {
           // return resolve({ success: true, enrollment });
         });
       } catch (error) {
-        return resolve({ error });
+        return resolve({ error, payload: null });
       }
     });
   }
 
   public getTransferById(transferId: string) {
-    return new Promise<IResponseSuccess<ITransfers> | IResponseFail>((resolve) => {
+    return new Promise<IResponse<ITransfers>>((resolve) => {
       try {
         Transfers
           .findById(transferId)
@@ -86,7 +86,7 @@ export class TransferRepo implements ITransferRepo {
             return resolve({ success: true, payload: res });
           });
       } catch (error) {
-        return resolve({ error });
+        return resolve({ error, payload: null });
       }
     });
   }
