@@ -1,4 +1,6 @@
-interface IUsers {
+import { Document } from 'mongoose';
+
+interface IUsers extends Document {
   email : String;
   password : String;
   profile: {
@@ -8,6 +10,7 @@ interface IUsers {
   };
   passwordResetToken: String;
   emailVerified: String;
+  comparePassword: any;
 }
 
 export default IUsers;
