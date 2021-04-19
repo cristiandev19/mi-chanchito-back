@@ -56,7 +56,9 @@ export class UsersRepo implements IUsersRepo {
           passwordResetToken : '',
           emailVerified      : 'false'
         });
+        console.log('newTransferObj', newTransferObj);
         newTransferObj.save({}, (err, newTransfer: IUsers) => {
+          console.log('user repo', err);
           if (err) throw err;
           console.log('transfer)', newTransfer);
           return resolve({ success: true, payload: newTransfer });
@@ -69,27 +71,22 @@ export class UsersRepo implements IUsersRepo {
   }
 
   public validateUser(email: string, password: string) {
-    return new Promise<IResponse<IUsers>>((resolve) => {
+    return new Promise<IResponse<IUsers>>(async (resolve) => {
       try {
         // const [user] = await
-        Users
-          .find({ email })
-          .exec((err, users: IUsers[]) => {
-            if (err) throw err;
-            if (!users) throw new Error('El usuario no existe');
-            if (users.length == 0) throw new Error('El usuario no existe');
-            if (users.length > 0) throw new Error('Existen varios usuarios con el mismo correo');
+        const users: IUsers[] = await Users.find({ email }) as IUsers[];
+        console.log('users', users);
+        if (!users) throw new Error('El usuario no existe');
+        if (users.length == 0) throw new Error('El usuario no existe');
+        if (users.length > 1) throw new Error('Existen varios usuarios con el mismo correo');
 
-            const [user] = users;
-            user.comparePassword(password)
-              .then(({ error, isMatch, message }) => {
-                if (error) throw new Error(message);
-                if (!isMatch) throw new Error(message);
+        const [user] = users;
+        const { error, isMatch, message } = await user.comparePassword(password);
 
-                return resolve({ success: true, payload: user });
-              })
-              .catch(err => { throw err });
-          })
+        if (error) throw new Error(message);
+        if (!isMatch) throw new Error(message);
+
+        return resolve({ success: true, payload: user });
       } catch (error) {
         return resolve({ error, payload: null });
       }
