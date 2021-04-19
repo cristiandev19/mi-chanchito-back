@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
-import { Schema, Document } from 'mongoose';
+import { Schema } from 'mongoose';
 import IUsers from './user.interface';
-const bcrypt = require('bcrypt-nodejs');
+import * as bcrypt from 'bcrypt-nodejs';
 
 const usersSchema = new Schema<IUsers>({
   email    : { type: String, unique: true },
@@ -26,14 +26,13 @@ usersSchema.pre('save', function save(next) {
   if (!user.isModified('password')) { return next(); }
   bcrypt.genSalt(10, (err, salt) => {
     if (err) { return next(err); }
-    bcrypt.hash(user.password, salt, (error, hash) => {
+    bcrypt.hash(user.password, salt, null, (error, hash) => {
+      console.log('error, hash', error, hash);
       if (error) { return next(error); }
       user.password = hash;
       return next();
     });
-    return null;
   });
-  return null;
 });
 
 /**
