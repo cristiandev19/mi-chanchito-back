@@ -1,15 +1,15 @@
 import { Document } from 'mongoose';
 
 interface IUsers extends Document {
-  email : String;
-  password : String;
+  email : string;
+  password : string;
   profile: {
-    names: String;
-    lastNames: String;
-    picture: String;
+    names: string;
+    lastNames: string;
+    picture: string;
   };
-  passwordResetToken: String;
-  emailVerified: String;
+  passwordResetToken: string;
+  emailVerified: string;
   comparePassword: any;
 }
 
