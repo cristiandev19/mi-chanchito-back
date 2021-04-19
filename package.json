@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/cristiandev19/express-api-example#readme",
   "dependencies": {
+    "@types/bcrypt-nodejs": "0.0.31",
     "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
