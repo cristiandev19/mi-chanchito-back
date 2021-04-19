@@ -1,4 +1,4 @@
-const { config } = require('../config/index');
+const config = require('../config/index');
 
 export function withErrorStack(error, stack) {
   if (config.dev) {
@@ -8,7 +8,6 @@ export function withErrorStack(error, stack) {
 }
 
 export function logErrors(err, req, res, next) {
-  console.log(err);
   next(err);
 }
 
