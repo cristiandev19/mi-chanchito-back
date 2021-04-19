@@ -1,5 +1,6 @@
 import App from './app';
 import TransferController from './src/modules/transfer/transfer.controller';
+import AuthController from './src/modules/auth/auth.controlller';
 // import PostController from './post/post.controller';
 // import ReportController from './report/report.controller';
 // import UserController from './user/user.controller';
@@ -9,7 +10,7 @@ import TransferController from './src/modules/transfer/transfer.controller';
 const app = new App(
   [
     new TransferController(),
-    // new AuthenticationController(),
+    new AuthController(),
     // new UserController(),
     // new ReportController(),
   ],
