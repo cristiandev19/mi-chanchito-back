@@ -4,6 +4,8 @@ import * as cors from 'cors';
 import IController from './src/interfaces/controller.interface';
 import config from './src/config/index';
 import { logErrors, errorHandler } from './src/middlewares/error.middleware';
+import * as passport from 'passport';
+import jwtStrategy from './src/strategies/jwt';
 
 /*
 // Importamos modulos
@@ -45,6 +47,9 @@ class App {
     this.app.use(cors({ origin: '*' }))
     this.app.use(express.json({limit: '20mb'}));
     this.app.use(express.urlencoded({ extended: false, limit: '20mb' }));
+
+    passport.use(jwtStrategy);
+
   }
 
   private initializeErrorHandling() {
