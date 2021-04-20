@@ -1,10 +1,11 @@
 import { Document } from 'mongoose';
 
 export interface ITransfers extends Document {
-  _id: String;
-  description : String;
-  details: String;
+  _id: string;
+  description : string;
+  details: string;
   amount : Number;
   dateTransfer : Date;
-  cashFlow : String;
+  cashFlow : string;
+  userId: string;
 }
