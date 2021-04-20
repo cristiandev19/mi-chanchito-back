@@ -42,10 +42,7 @@ class AuthController implements IController {
     try {
       const { email, password } = request.body;
       const { error, payload, success} = await this.userRepo.validateUser(email, password);
-      console.log('return del error', {error, payload, success});
       if (error) throw error;
-
-      console.log('payload',payload);
       const { expires, token } = this.jwtAdapter.signToken(payload._id);
       const { profile } = payload;
       console.log('profile', profile);
