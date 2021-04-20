@@ -1,16 +1,29 @@
+// import { ms } from 'ms';
 import { sign, verify } from 'jsonwebtoken';
 import config from '../../config/index';
 import IEncrypt from './encrypt.interface';
 
 class JwtAdapter implements IEncrypt {
-  private secret = config.authJwtSecret;
+  private secret: string = config.authJwtSecret;
+  private expiresIn = config.authJwtExpireTime
   constructor(
   ) {}
 
-  public signToken(payload) {
-    return sign(payload, this.secret, {
-      expiresIn: process.env.JWT_EXPIRE_TIME,
-    })
+  public signToken(encryptId) {
+    const expiresIn = this.expiresIn;
+
+    const payload = {
+      sub : encryptId,
+      iat : Date.now(),
+    };
+    const signedToken = sign(payload, this.secret, {
+      expiresIn,
+    });
+    return {
+      token   : `Bearer ${signedToken}`,
+      expires : expiresIn,
+    };
+
   }
 
   public verifyToken(token) {
