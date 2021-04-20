@@ -38,11 +38,11 @@ class UserController implements IController {
 
   private getAllTransfers = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const transfers = await this.transferRepo.getAllTransfers();
+      // const transfers = await this.transferRepo.getAllTransfers();
       return response.send({
         status   : 200,
         message  : 'hey',
-        response : transfers,
+        response : null,
       });
     } catch (error) {
       return next(error);
@@ -52,12 +52,12 @@ class UserController implements IController {
   private createTransfer = async (request: Request, response: Response, next: NextFunction) => {
     try {
       console.log('request', request.body);
-      const transfer = await this.transferRepo.save({ ...request.body });
-      console.log('transfer', transfer.error);
+      // const transfer = await this.transferRepo.save({ ...request.body });
+      // console.log('transfer', transfer.error);
       return response.send({
         status   : 200,
         message  : 'hey',
-        response : transfer,
+        response : null,
       });
     } catch (error) {
       return next(error);
