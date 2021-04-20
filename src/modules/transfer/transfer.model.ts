@@ -7,6 +7,7 @@ const transfesSchema = new mongoose.Schema<ITransfers & mongoose.Document>({
   details      : { type: String, default: '', required: false },
   amount       : { type: Number, default: 0, required: true },
   dateTransfer : { type: Date, default: Date.now, required: true },
+  userId       : { type: mongoose.Schema.Types.ObjectId, ref: 'Users'},
   cashFlow     : {
     type     : String,
     default  : '',
