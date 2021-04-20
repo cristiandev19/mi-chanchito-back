@@ -4,19 +4,21 @@ import { ITransfers } from './transfer.interface';
 import { Repo } from "../../core/infra/Repo";
 
 export interface ITransferRepo extends Repo<ITransfers> {
-  getTransferById(transferId: string): Promise<IResponse<ITransfers>>;
-  getAllTransfers(): Promise<IResponse<ITransfers[]>>;
+  getTransferById(transferId: string, userId: string): Promise<IResponse<ITransfers>>;
+  getAllTransfers(userId: string): Promise<IResponse<ITransfers[]>>;
 };
 
 export class TransferRepo implements ITransferRepo {
   constructor() {
   }
 
-  public getAllTransfers() {
+  public getAllTransfers(userId: string) {
     return new Promise<IResponse<ITransfers[]>>((resolve) => {
       try {
         Transfers
-          .find()
+          .find({
+            userId
+          })
           .exec((err, res: ITransfers[]) => {
             if (err) throw err;
             return resolve({ success: true, payload: res });
@@ -57,7 +59,9 @@ export class TransferRepo implements ITransferRepo {
   public save(transfer: ITransfers) {
     return new Promise<IResponse<ITransfers>>((resolve) => {
       try {
+        if (!transfer.userId) throw new Error('El usuario es necesario');
         const newTransferObj = new Transfers({
+          userId       : transfer.userId,
           description  : transfer.description,
           details      : transfer.details,
           amount       : transfer.amount,
