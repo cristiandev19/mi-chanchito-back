@@ -46,8 +46,7 @@ class AuthController implements IController {
       if (error) throw error;
 
       console.log('payload',payload);
-      const tokenObject = this.jwtAdapter.signToken(payload);
-      console.log('tokenObject', tokenObject);
+      const { expires, token } = this.jwtAdapter.signToken(payload._id);
       const { profile } = payload;
       console.log('profile', profile);
       const userObj = {
@@ -60,8 +59,8 @@ class AuthController implements IController {
         succes    : true,
         message   : 'Ingreso existoso',
         user      : userObj,
-        // token     : tokenObject.token,
-        // expiresIn : tokenObject.expires,
+        token     : token,
+        expiresIn : expires,
       });
     } catch (error) {
       return next(error);

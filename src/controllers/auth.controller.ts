@@ -1,4 +1,4 @@
-import * as jwtAdapter from '../adapter/jwt.adapter';
+import * as jwtAdapter from '../adapter/encrypt/jwt.adapter';
 
 export const loginEmail = (req, res, next) => {
   try {
