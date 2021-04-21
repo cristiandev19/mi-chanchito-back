@@ -6,17 +6,6 @@ import config from './src/config/index';
 import { logErrors, errorHandler } from './src/middlewares/error.middleware';
 import * as passport from 'passport';
 import jwtStrategy from './src/strategies/jwt';
-
-/*
-// Importamos modulos
-const exampleRouter = require('./src/routes/example.router');
-const authRouter = require('./src/routes/auth.router');
-// Establecemos las rutas
-app
-  .use('/example', exampleRouter)
-  .use('/auth', authRouter);
-*/
-
 class App {
   public app: express.Application;
 
