@@ -47,17 +47,17 @@ class AuthController implements IController {
       const { profile } = payload;
       console.log('profile', profile);
       const userObj = {
+        token     : token,
+        expiresIn : expires,
         profile,
         email,
       };
       console.log('userObj', userObj);
 
       return response.status(200).send({
-        succes    : true,
+        success   : true,
         message   : 'Ingreso existoso',
         user      : userObj,
-        token     : token,
-        expiresIn : expires,
       });
     } catch (error) {
       return next(error);
