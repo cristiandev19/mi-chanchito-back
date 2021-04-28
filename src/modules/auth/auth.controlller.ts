@@ -1,4 +1,4 @@
-import JwtAdapter from '../../adapter/encrypt/jwt.adapter';
+import JwtAdapter from '../../infrastructure/adapters/encrypt/jwt.adapter';
 import { NextFunction, Response, Request, Router } from 'express';
 import { UsersRepo } from '../user/user.repo';
 import IController from '../../interfaces/controller.interface';
