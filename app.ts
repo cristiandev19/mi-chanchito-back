@@ -2,8 +2,8 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
 import IController from './src/interfaces/controller.interface';
-import config from './src/config/index';
-import { logErrors, errorHandler } from './src/middlewares/error.middleware';
+import config from './src/aplication/config/index';
+import { logErrors, errorHandler } from './src/aplication/middlewares/error.middleware';
 import * as passport from 'passport';
 import jwtStrategy from './src/strategies/jwt';
 class App {
