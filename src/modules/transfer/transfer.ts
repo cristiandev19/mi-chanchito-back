@@ -1,4 +1,4 @@
-import { ModelBase } from '../../core/infra/model.base.interface';
+import { ModelBase } from '../../infrastructure/helpers/model.base.interface';
 
 interface TransferProps extends ModelBase {
   title : String;
@@ -9,7 +9,7 @@ interface TransferProps extends ModelBase {
 }
 
 class Transfer implements TransferProps {
-  
+
 }
 
 export default Transfer;

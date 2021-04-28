@@ -1,6 +1,6 @@
-import Mapper from "core/infra/Mapper";
+import Mapper from "infrastructure/helpers/Mapper";
 import Transfer from "./transfer";
-import TransferDTO from "./trasnfer.dto";
+import TransferDTO from "./transfer.dto";
 
 class TransferMap extends Mapper<Transfer> {
   public static toDTO (user: Transfer): TransferDTO {

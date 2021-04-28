@@ -1,6 +1,6 @@
 // import { ms } from 'ms';
 import { sign, verify } from 'jsonwebtoken';
-import config from '../../config/index';
+import config from '../../aplication/config/index';
 import IEncrypt from './encrypt.interface';
 
 class JwtAdapter implements IEncrypt {

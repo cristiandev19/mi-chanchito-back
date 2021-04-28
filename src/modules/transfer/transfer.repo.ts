@@ -1,7 +1,7 @@
-import { IResponse } from 'core/infra/Responses';
+import { IResponse } from 'infrastructure/helpers/Responses';
 import Transfers from './transfer.model';
 import { ITransfers } from './transfer.interface';
-import { Repo } from "../../core/infra/Repo";
+import { Repo } from "../../infrastructure/helpers/Repo";
 
 export interface ITransferRepo extends Repo<ITransfers> {
   getTransferById(transferId: string, userId: string): Promise<IResponse<ITransfers>>;

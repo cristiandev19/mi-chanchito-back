@@ -64,7 +64,7 @@ class TransferController implements IController {
     try {
       const user = request.user as IUsers;
       console.log('request', request.body);
-      const { error, payload: transfer} = await this.transferRepo.save({ ...request.body, userId: user._id });
+      const { error, payload: transfer } = await this.transferRepo.save({ ...request.body, userId: user._id });
       if (error) throw error;
       return response.send({
         status   : 200,

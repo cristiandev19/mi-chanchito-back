@@ -1,7 +1,7 @@
 import IUsers from './user.interface';
 import Users from './user.model';
-import { Repo } from '../../core/infra/Repo';
-import { IResponse } from 'core/infra/Responses';
+import { Repo } from '../../infrastructure/helpers/Repo';
+import { IResponse } from 'infrastructure/helpers/Responses';
 
 interface IUsersRepo extends Repo<IUsers> {
   getUserById(userId: string): Promise<IResponse<IUsers>>;
