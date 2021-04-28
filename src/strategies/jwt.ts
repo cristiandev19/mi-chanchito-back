@@ -1,6 +1,6 @@
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
-import config from '../config/index';
+import config from '../aplication/config/index';
 import { UsersRepo } from '../modules/user/user.repo';
 
 const opts = {
