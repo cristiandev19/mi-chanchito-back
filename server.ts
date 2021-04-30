@@ -1,4 +1,4 @@
-import App from './app';
+import App from './src/aplication/app';
 import TransferController from './src/modules/transfer/transfer.controller';
 import AuthController from './src/modules/auth/auth.controlller';
 
