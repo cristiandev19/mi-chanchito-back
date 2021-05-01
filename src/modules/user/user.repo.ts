@@ -35,10 +35,10 @@ export class UsersRepo implements IUsersRepo {
     });
   }
 
-  public delete(user: IUsers) {
+  public delete(idUser: string) {
     return new Promise<IResponse<IUsers>>((resolve) => {
       try {
-        console.log('transfer._id', user._id);
+        console.log('transfer._id', idUser);
         return resolve({ success: true, payload: null });
       } catch (error) {
         return resolve({ error, payload: null });
