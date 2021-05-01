@@ -24,6 +24,8 @@ class TransferController implements IController {
     this.router.get(`${this.path}/all`, this.passport.authenticate('jwt', { session: false }), this.getAllTransfers);
     this.router.get(`${this.path}/:id`, this.passport.authenticate('jwt', { session: false }), this.getTransferById);
     this.router.post(`${this.path}/create`, this.passport.authenticate('jwt', { session: false }), this.createTransfer);
+    this.router.post(`${this.path}/update`, this.passport.authenticate('jwt', { session: false }), this.updateTransfer);
+    this.router.post(`${this.path}/delete`, this.passport.authenticate('jwt', { session: false }), this.deleteTransfer);
   }
 
   private getTransferById = async (request: Request, response: Response, next: NextFunction) => {
@@ -75,6 +77,42 @@ class TransferController implements IController {
       return next(error);
     }
   }
+
+  private updateTransfer = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const user = request.user as IUsers;
+      console.log('update request', request.body);
+      const { error, payload: transfer } = await this.transferRepo.update({ ...request.body, userId: user._id });
+      console.log('error', error);
+      if (error) throw error;
+      console.log('transfer', transfer);
+      return response.send({
+        status   : 200,
+        message  : 'hey',
+        response : transfer,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  private deleteTransfer = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const user = request.user as IUsers;
+      console.log('request', request.body);
+      const { idTransfer } = request.body;
+      const { error, payload: transfer } = await this.transferRepo.delete(idTransfer);
+      if (error) throw error;
+      return response.send({
+        status   : 200,
+        message  : 'hey',
+        response : transfer,
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
 }
 
 export default TransferController;
