@@ -20,6 +20,9 @@ export class TransferRepo implements ITransferRepo {
           .find({
             userId
           })
+          .sort({
+            dateTransfer: -1,
+          })
           .exec((err, res: ITransfers[]) => {
             if (err) throw err;
             return resolve({ success: true, payload: res });
