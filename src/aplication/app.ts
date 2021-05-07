@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
-import IController from '../interfaces/controller.interface';
+import IController from './interfaces/controller.interface';
 import config from './config/index';
 import { logErrors, errorHandler } from './middlewares/error.middleware';
 import * as passport from 'passport';

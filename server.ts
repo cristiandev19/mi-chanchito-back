@@ -1,6 +1,6 @@
 import App from './src/aplication/app';
-import TransferController from './src/modules/transfer/transfer.controller';
-import AuthController from './src/modules/auth/auth.controlller';
+import TransferController from './src/domain/modules/transfer/transfer.controller';
+import AuthController from './src/domain/modules/auth/auth.controlller';
 
 const app = new App(
   [
