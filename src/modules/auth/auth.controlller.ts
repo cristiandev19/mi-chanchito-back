@@ -64,6 +64,15 @@ class AuthController implements IController {
     }
   }
 
+  private test = async (request: Request, response: Response, next: NextFunction) => {
+    return response.status(200).send({
+      success   : true,
+      message   : 'Ingreso existoso',
+    });
+
+  }
+
+
 }
 
 export default AuthController;
