@@ -8,10 +8,9 @@
     "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "devjs": "nodemon app.js",
-    "dev": "nodemon ./server.ts",
-    "start": "node dist/aplication/server.js"
+    "dev": "nodemon ./src/server.ts",
+    "start": "node dist/server.js"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cristiandev19/express-api-example.git"
@@ -28,6 +27,7 @@
   "homepage": "https://github.com/cristiandev19/express-api-example#readme",
   "dependencies": {
     "@types/bcrypt-nodejs": "0.0.31",
+    "@types/node": "^15.0.2",
     "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
