@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es2017",
+    "target": "ES2017",
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
@@ -10,7 +12,8 @@
         "*",
         "src/types/*"
       ]
-    }
+    },
+    "skipLibCheck": true,
   },
   "include": [
     "src/**/*.ts"
