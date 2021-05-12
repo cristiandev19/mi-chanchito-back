@@ -8,7 +8,8 @@ interface TransferProps extends ModelBase {
   cashFlow : String;
 }
 
-class Transfer implements TransferProps {
+// class Transfer implements TransferProps {
+class Transfer {
 
 }
 
