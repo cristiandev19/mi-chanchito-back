@@ -21,6 +21,8 @@ class AuthController implements IController {
     // this.router.get(`${this.path}/:id`, authMiddleware, this.getUserById);
     this.router.post(`${this.path}/signup-email`, this.signupEmail);
     this.router.post(`${this.path}/login-email`, this.loginEmail);
+    this.router.get(`${this.path}/test`, this.test);
+
   }
 
   private signupEmail = async (request: Request, response: Response, next: NextFunction) => {
