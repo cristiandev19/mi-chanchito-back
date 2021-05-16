@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import typeCashFlow from '../../constants/transfer';
+import typeCashFlow from './constants/transfer';
 import { ITransfers } from './transfer.interface';
 
 const transfesSchema = new mongoose.Schema<ITransfers & mongoose.Document>({
