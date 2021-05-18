@@ -28,7 +28,7 @@ class TransferController implements IController {
     this.router.post(`${this.path}/delete`, this.passport.authenticate('jwt', { session: false }), this.deleteTransfer);
   }
 
-  private getTransferById = async (request: Request, response: Response, next: NextFunction) => {
+  private async getTransferById(request: Request, response: Response, next: NextFunction) {
     try {
       console.log('request', request.user);
       const { id } = request.params;
@@ -45,7 +45,7 @@ class TransferController implements IController {
     }
   }
 
-  private getAllTransfers = async (request: Request, response: Response, next: NextFunction) => {
+  private async getAllTransfers(request: Request, response: Response, next: NextFunction) {
     try {
       console.log('request', request.user);
       const user = request.user as IUsers;
@@ -62,7 +62,7 @@ class TransferController implements IController {
     }
   }
 
-  private createTransfer = async (request: Request, response: Response, next: NextFunction) => {
+  private async createTransfer(request: Request, response: Response, next: NextFunction) {
     try {
       const user = request.user as IUsers;
       console.log('request', request.body);
@@ -78,7 +78,7 @@ class TransferController implements IController {
     }
   }
 
-  private updateTransfer = async (request: Request, response: Response, next: NextFunction) => {
+  private async updateTransfer(request: Request, response: Response, next: NextFunction) {
     try {
       const user = request.user as IUsers;
       console.log('update request', request.body);
@@ -96,7 +96,7 @@ class TransferController implements IController {
     }
   }
 
-  private deleteTransfer = async (request: Request, response: Response, next: NextFunction) => {
+  private async deleteTransfer(request: Request, response: Response, next: NextFunction) {
     try {
       const user = request.user as IUsers;
       console.log('request', request.body);
