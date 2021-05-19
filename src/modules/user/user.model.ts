@@ -2,6 +2,19 @@ import * as mongoose from 'mongoose';
 import { Schema } from 'mongoose';
 import IUsers from './user.interface';
 import * as bcrypt from 'bcrypt-nodejs';
+import cardTypes from './constants/cards';
+
+const cardSchema = new Schema({
+  cardAlias: {
+    type: String,
+    required: true,
+  },
+  cardType: {
+    type: String,
+    enum: [...Object.values(cardTypes)],
+  },
+});
+
 
 const usersSchema = new Schema<IUsers>({
   email    : { type: String, unique: true },
@@ -14,7 +27,9 @@ const usersSchema = new Schema<IUsers>({
   // Cuando quieres cambiar la contraseña, se usa el Token
   passwordResetToken : String,
   emailVerified      : { type: Boolean, default: false },
+  cards : [cardSchema]
 }, { timestamps: true });
+
 
 /**
  * Password hash middleware.
