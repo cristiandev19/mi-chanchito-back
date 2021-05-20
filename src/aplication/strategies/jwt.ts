@@ -1,7 +1,7 @@
+import { userRepo } from 'modules/user/repos';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
 import config from '../config/index';
-import { UsersRepo } from '../../modules/user/user.repo';
 
 const opts = {
   jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -12,8 +12,7 @@ const opts = {
 // module.
 const jwtStrategy = new Strategy(opts, async (jwtPayload, done) => {
   try {
-    const usersRepo = new UsersRepo();
-    const { error, payload: user } = await usersRepo.getUserById(jwtPayload.sub);
+    const { error, payload: user } = await userRepo.getUserById(jwtPayload.sub);
     if (error) throw error;
     if (!user) return done(null, false);
     return done(null, user);
